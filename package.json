@@ -1,0 +1,20 @@
+{
+  "name": "codespace-rojre",
+  "version": "1.0.0",
+  "description": "An auth system locally designed in github codespace",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rojre1979/codespace-rojre.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rojre1979/codespace-rojre/issues"
+  },
+  "homepage": "https://github.com/rojre1979/codespace-rojre#readme"
+}
