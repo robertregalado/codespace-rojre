@@ -11,6 +11,6 @@ exports.connect = () => {
     .catch((error) => {
         console.log(`DB connection FAILED`);
         console.log(error);
-        process.env(1);
+        process.exit(1);
     });
 }
