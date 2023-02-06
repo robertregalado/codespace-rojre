@@ -7,7 +7,6 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser')
 
 const app = express();
-
 app.use(express.json())
 app.use(cookieParser())
 
@@ -74,21 +73,33 @@ app.post('/login', async (req, res) => {
         const user = await User.findOne({email})
 
         // If user is not there, then what?
+
         // 4. Math the password
         if (user && (await bcrypt.compare(password, user.password))){
             const token = jwt.sign({id: _id, email},
-            'shhhh', // process.env.jwtsecret
-            {
-                expiresIn: "2h"
-            }
+                'shhhh', // process.env.jwtsecret
+                {
+                    expiresIn: "2h"
+                }
             );
 
             user.token = token 
             user.password = undefined
 
-            
-        // 5. Send a token
+           // cookie section
+            const options = {
+                expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+                httpOnly: true
+            };
+            res.status(200).cookie("token", token, options).json({
+                success: true,
+                token,
+                user
+            }) 
+        
+          // 5. Send a token
         }
+
     } catch (error) {
         
     }
